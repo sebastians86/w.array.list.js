@@ -1,8 +1,10 @@
 ﻿/*
 *   List methods (adapted from C#)
 *   Sebastian Stefaniuk - Webitects.com
+*   https://github.com/sebastians86/w.array.list.js
 *
-*
+*   02-10-2014  v 1.1.1.0   Added clone() method; Updated utility.getCompare() method.
+*   02-09-2014  v 1.0.0.0   Initial version*
 */
 
 Array.prototype.add = function (item) {
@@ -30,6 +32,14 @@ Array.prototype.any = function () {
 
 Array.prototype.clear = function () {
     this = [];
+}
+
+Array.prototype.clone = function () {
+    var array = [];
+    this.foreach(function (item) {
+        array.add(item);
+    });
+    return array;
 }
 
 Array.prototype.count = function () {
@@ -123,15 +133,9 @@ Array.prototype.longCount = function (delegate) {
 }
 
 Array.prototype.orderBy = function (args) {
-    var _this = this;
-    var array = [];
     var compareFunc = this.utility.getCompare(this, arguments);
-
-    for (var i = 0; i < _this.length; i++)
-        array.push(_this[i]);
-
-    array.sort(compareFunc);
-    return array;
+    this.sort(compareFunc);
+    return this;
 }
 
 Array.prototype.removeAll = function (delegate) {
@@ -185,7 +189,7 @@ Array.prototype.utility = {
 
         for (var i = 0; i < args.length; i++) {
             var delegate = args[i].del;
-            var compareType = args[i].type !== undefined ? args[i].type : Array.SortType.ASC;
+            var sortType = args[i].sort !== undefined ? args[i].sort : Array.SortType.ASC;
             var compare;
 
             if (typeof delegate === 'function') {
@@ -210,7 +214,7 @@ Array.prototype.utility = {
             if (compare !== undefined) {
                 compares.push(compare);
                 delegates.push(delegate);
-                types.push(compareType);
+                types.push(sortType);
             }
         }
 
@@ -226,16 +230,16 @@ Array.prototype.utility = {
             }
         }
         else {
-            var compareType;
+            var sortType;
 
             if (args.length === 1) {
-                if (typeof args[0] === 'number') compareType = args[0];
-                else compareType = Array.SortType.ASC;
+                if (typeof args[0] === 'number') sortType = args[0];
+                else sortType = Array.SortType.ASC;
             }
             else
-                compareType = Array.SortType.ASC;
+                sortType = Array.SortType.ASC;
 
-            if (compareType === Array.SortType.DESC) {
+            if (sortType === Array.SortType.DESC) {
                 compareFunc = function (a, b) {
                     if (a > b) return -1;
                     if (a < b) return 1;
