@@ -172,12 +172,7 @@ Array.prototype.take = function (numOfItems, skip) {
 
 Array.prototype.type = undefined;
 
-Array.prototype.utility = {
-    compareType: {
-        ASC: 1,
-        DESC: 2
-    },
-
+Array.Utility = {
     getCompare: function () {
         var compares = [],
             delegates = [],
@@ -194,8 +189,8 @@ Array.prototype.utility = {
 
             if (typeof delegate === 'function') {
                 compare = function (a, b, pred, type) {
-                    var x = _this.utility.getSortValue(pred(a));
-                    var y = _this.utility.getSortValue(pred(b));
+                    var x = Array.Utility.getSortValue(pred(a));
+                    var y = Array.Utility.getSortValue(pred(b));
                     if (x < y) return type === Array.SortType.ASC ? -1 : 1;
                     if (x > y) return type === Array.SortType.ASC ? 1 : -1;
                     return 0;
@@ -203,8 +198,8 @@ Array.prototype.utility = {
             }
             else if (typeof delegate === 'string') {
                 compare = function (a, b, pred, type) {
-                    var x = _this.utility.getSortValue(a[pred]);
-                    var y = _this.utility.getSortValue(b[pred]);
+                    var x = Array.Utility.getSortValue(a[pred]);
+                    var y = Array.Utility.getSortValue(b[pred]);
                     if (x < y) return type === Array.SortType.ASC ? -1 : 1;
                     if (x > y) return type === Array.SortType.ASC ? 1 : -1;
                     return 0;
