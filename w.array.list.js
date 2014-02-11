@@ -3,6 +3,7 @@
 *   Sebastian Stefaniuk - Webitects.com
 *   https://github.com/sebastians86/w.array.list.js
 *
+*   02-11-2014  v 1.1.2.0   Updated addRange() method.
 *   02-10-2014  v 1.1.1.0   Added clone() method; Updated utility.getCompare() method.
 *   02-09-2014  v 1.0.0.0   Initial version*
 */
@@ -23,7 +24,7 @@ Array.prototype.addRange = function (array) {
             _this.add(item);
         });
     }
-    return _this;
+    return _this.clone();
 }
 
 Array.prototype.any = function () {
