@@ -126,7 +126,7 @@ Array.prototype.longCount = function (delegate) {
 }
 
 Array.prototype.orderBy = function (args) {
-    var compareFunc = this.utility.getCompare(this, arguments);
+    var compareFunc = Array.Utility.getCompare(this, arguments);
     this.sort(compareFunc);
     return this;
 }
