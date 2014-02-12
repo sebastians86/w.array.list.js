@@ -128,7 +128,6 @@ Array.prototype.longCount = function (delegate) {
 Array.prototype.orderBy = function (args) {
     var compareFunc = Array.Utility.getCompare(this, arguments);
     this.sort(compareFunc);
-    return this;
 }
 
 Array.prototype.removeAll = function (delegate) {
