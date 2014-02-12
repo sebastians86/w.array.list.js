@@ -39,10 +39,6 @@ Array.prototype.clone = function () {
     return array;
 }
 
-Array.prototype.count = function () {
-    return this.length;
-}
-
 Array.prototype.distinct = function (delegate) {
     var array = [];
     var _this = this;
