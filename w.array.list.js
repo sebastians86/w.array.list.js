@@ -145,7 +145,6 @@ Array.prototype.removeAll = function (delegate) {
 Array.prototype.removeAt = function (index) {
     var array = [];
     var _this = this;
-    console.log(_this);
     for (var i = 0; i < _this.length; i++)
         if (i !== index)
             array.push(_this[i]);
