@@ -3,6 +3,7 @@
 *   Sebastian Stefaniuk - Webitects.com
 *   https://github.com/sebastians86/w.array.list.js
 *
+*   02-17-2014  v 1.1.3.0   Updated distinct() method.
 *   02-11-2014  v 1.1.2.0   Updated addRange() method.
 *   02-10-2014  v 1.1.1.0   Added clone() method; Updated utility.getCompare() method.
 *   02-09-2014  v 1.0.0.0   Initial version*
@@ -43,13 +44,15 @@ Array.prototype.distinct = function (delegate) {
     var array = [];
     var _this = this;
     for (var i = 0; i < _this.length; i++) {
-        if ((typeof delegate === 'function' && delegate(_this[i])) || (_this[i] === delegate)) {
-            if (typeof delegate === 'function' && delegate(_this[i])) {
-                if (array.findIndex(function (x) { return x == delegate(_this[i]); }) == -1)
-                    array.add(delegate(_this[i]));
-            }
+        if (typeof delegate === 'function') {      
+            if (array.findIndex(function (x) { return x == delegate(_this[i]); }) == -1)
+                array.add(delegate(_this[i]));
         }
         else if (typeof delegate === 'undefined') {
+            if (array.findIndex(function (x) { return x == _this[i]; }) == -1)
+                array.add(_this[i]);
+        }
+        else if (_this[i] === delegate) {
             if (array.findIndex(function (x) { return x == _this[i]; }) == -1)
                 array.add(_this[i]);
         }
