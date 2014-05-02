@@ -112,6 +112,32 @@ Array.prototype.foreach = function (delegate) {
     }
 }
 
+Array.prototype.insertAt = function (obj, index) {    
+    if (index >= 0 && index <= this.length) {
+        var _array = [];
+        var _this = this;
+
+        if (index === 0) {
+            _array.add(obj);
+            _array.addRange(_this);
+        }
+        else if (index === _this.length) {
+            _array = _this.clone();
+            _array.add(obj);
+        }
+        else {
+            _array.addRange(_this.take(index, 0));
+            _array.add(obj);
+            _array.addRange(_this.take(_this.length - index, index));
+        }
+
+        for (var i = 0; i < _array.length; i++)
+            _this[i] = _array[i];
+    }
+    else
+        throw 'Array.prototype.insertAt(): Cannot insert at ' + index + '. Array length = ' + this.length;
+}
+
 Array.prototype.last = function () {
     var item;
     if (this.length > 0)
@@ -127,6 +153,32 @@ Array.prototype.longCount = function (delegate) {
             count++;
     }
     return count;
+}
+
+Array.prototype.max = function (delegate) {
+    var item;
+    var _this = this;
+    var max = Number.MIN_VALUE;
+    for (var i = 0; i < _this.length; i++) {
+        if (typeof delegate === 'function' && delegate(_this[i]) > max)
+            max = delegate(_this[i]);
+        else if (typeof delegate === 'undefined' && _this[i] > max)
+            max = _this[i];
+    }
+    return max;
+}
+
+Array.prototype.min = function (delegate) {
+    var item;
+    var _this = this;
+    var min = Number.MAX_VALUE;
+    for (var i = 0; i < _this.length; i++) {
+        if (typeof delegate === 'function' && delegate(_this[i]) < min)
+            min = delegate(_this[i]);
+        else if (typeof delegate === 'undefined' && _this[i] < min)
+            min = _this[i];
+    }
+    return min;
 }
 
 Array.prototype.orderBy = function (args) {
@@ -156,20 +208,6 @@ Array.prototype.removeAt = function (index) {
 }
 
 Array.prototype.select = function (delegate) {
-    var array = [];
-    var _this = this;
-    for (var i = 0; i < _this.length; i++) {
-        if (typeof delegate === 'function') {
-            array.add(delegate(_this[i]));
-        }
-        else if (typeof delegate === 'string') {
-            array.add(_this[i][delegate]);
-        }
-    }
-    return array;
-}
-
-Array.prototype.selectDistinct = function (delegate) {
     var array = [];
     var _this = this;
     for (var i = 0; i < _this.length; i++) {
