@@ -17,6 +17,7 @@ This plugin is a great tool to enhance your typical array methods and to simplif
 * [findIndex()](https://github.com/sebastians86/w.array.list.js/wiki#wiki-findindex)
 * [first()](https://github.com/sebastians86/w.array.list.js/wiki#wiki-first)
 * [foreach()](https://github.com/sebastians86/w.array.list.js/wiki#wiki-foreach)
+* [insertAt()](https://github.com/sebastians86/w.array.list.js/wiki#wiki-insertat)
 * [last()](https://github.com/sebastians86/w.array.list.js/wiki#wiki-last)
 * [longCount()](https://github.com/sebastians86/w.array.list.js/wiki#wiki-longcount)
 * [orderBy()](https://github.com/sebastians86/w.array.list.js/wiki#wiki-orderby)
