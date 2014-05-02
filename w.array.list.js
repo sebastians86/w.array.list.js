@@ -3,6 +3,7 @@
 *   Sebastian Stefaniuk - Webitects.com
 *   https://github.com/sebastians86/w.array.list.js
 *
+*   05-02-2014  v 1.3.4.0   Added insertAt() method.
 *   04-08-2014  v 1.2.4.0   Updated distinct() method; Added select() method.
 *   02-17-2014  v 1.1.3.0   Updated distinct() method.
 *   02-11-2014  v 1.1.2.0   Updated addRange() method.
